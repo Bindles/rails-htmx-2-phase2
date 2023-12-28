@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @poke %>
+
+<div>
+  <%= link_to "Edit this poke", edit_poke_path(@poke) %> |
+  <%= link_to "Back to pokes", pokes_path %>
+
+  <%= button_to "Destroy this poke", @poke, method: :delete %>
+</div>

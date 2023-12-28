@@ -1,0 +1,57 @@
+<%= form_with(model: poke) do |form| %>
+  <% if poke.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(poke.errors.count, "error") %> prohibited this poke from being saved:</h2>
+
+      <ul>
+        <% poke.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :name, style: "display: block" %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div>
+    <%= form.label :url, style: "display: block" %>
+    <%= form.text_field :url %>
+  </div>
+
+  <div>
+    <%= form.label :category, style: "display: block" %>
+    <%= form.text_field :category %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+
+  <%= button_tag 'Fetch Poke', id: 'fb' %>
+  <%= content_tag :p, '', id: 'pokemon_name' %>
+<% end %>
+
+<button id="fbjs">Fetch Poke JS</button>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    fetch('https://pokeapi.co/api/v2/pokemon?limit=1')
+      .then(response => response.json())
+      .then(data => {
+        const pokeName = data.results[0].name;
+        const pokeNameInput = document.getElementById('pokemon_name');
+        if (pokeNameInput) {
+
+          pokeNameInput.textContent = `Fetched Pokémon Name: ${pokeName}`;
+          pokeNameInput.value = pokeName
+        }
+      })
+      .catch(error => {
+        console.error('Error fetching the data', error);
+      });
+  });
+</script>
+

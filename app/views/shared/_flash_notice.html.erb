@@ -1,0 +1,6 @@
+<!-- app/views/shared/_flash_notice.html.erb -->
+<% if message.present? %>
+  <div class="alert alert-<%= flash_type %>">
+    <%= message %>
+  </div>
+<% end %>

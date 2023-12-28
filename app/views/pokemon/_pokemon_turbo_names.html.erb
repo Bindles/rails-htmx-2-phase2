@@ -1,0 +1,10 @@
+<!-- app/views/pokemon/_pokemon_turbo_names.html.erb -->
+<% if pokemon_data.present? %>
+  <ul>
+    <% pokemon_data['results'].each do |pokemon| %>
+      <li><%= pokemon['name'] %></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>No Pokemon data available.</p>
+<% end %>

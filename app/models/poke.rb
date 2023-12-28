@@ -1,0 +1,2 @@
+class Poke < ApplicationRecord
+end

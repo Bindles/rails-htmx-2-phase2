@@ -1,0 +1,185 @@
+<!-- app/views/layouts/application.html.erb -->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Other head content -->
+
+    <!-- Include HTMX library -->
+    <%#= htmx_include_tags %>
+
+    <!-- Your custom HTMX script for creating a notice -->
+    <script>
+      // Example: Show a notice when the link is clicked
+      document.addEventListener('DOMContentLoaded', function() {
+        var showNoticeLink = document.getElementById('show-notice-link');
+
+        // HTMX trigger on link click
+        showNoticeLink.addEventListener('click', function(event) {
+          event.preventDefault();
+
+          // Replace this with the ID or class of the element where you want to display the notice
+          var noticeElement = document.getElementById('notice-container');
+          
+          // Set the message and style
+          noticeElement.innerHTML = "This is a green notice!";
+          noticeElement.style.color = 'green';
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <!-- Replace 'notice-container' with the ID or class of the element where you want to display the notice -->
+    <div id="notice-container"></div>
+
+    <!-- Example link to trigger the notice -->
+    <%= link_to "Show Notice", "#", id: "show-notice-link", data: { turbo_action: "click->#notice-container#append" } %>
+
+    <!-- Body content -->
+  </body>
+</html>
+
+
+
+<!-- app/views/layouts/application.html.erb -->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Other head content -->
+
+    <!-- Include jQuery (you can use a different library if you prefer) -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+    <!-- Your custom JavaScript for creating a notice -->
+    <script>
+      $(document).ready(function() {
+        // Function to show a notice
+        function noticeAction(message, color, font) {
+          // Replace this with the ID or class of the element where you want to display the notice
+          var noticeElement = $('#notice-container');
+          
+          // Set the message and style
+          noticeElement.html(message).css({
+            'color': color,
+            'font-family': font
+          });
+        }
+
+        // Example: Show a notice when the link is clicked
+        $('#show-notice-link').on('click', function(event) {
+          event.preventDefault();
+          noticeAction("This is a green notice!", 'green', 'Arial, sans-serif');
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <!-- Replace 'notice-container' with the ID or class of the element where you want to display the notice -->
+    <div id="notice-container"></div>
+
+    <!-- Example link to trigger the notice -->
+    <%= link_to "Show Noticej2", "#", id: "show-notice-link" %>
+
+    <!-- Body content -->
+  </body>
+</html>
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Other head content -->
+
+    <!-- Include jQuery (you can use a different library if you prefer) -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+    <!-- Your custom JavaScript for creating a notice -->
+    <script>
+      $(document).ready(function() {
+        // Function to show a notice
+        function showNotice(message) {
+          // Replace this with the ID or class of the element where you want to display the notice
+          var noticeElement = $('#notice-container');
+          
+          // Set the message and style
+          noticeElement.html(message).css('color', 'green');
+        }
+
+        // Example: Show a notice when the link is clicked
+        $('#show-notice-link').on('click', function(event) {
+          event.preventDefault();
+          showNotice("This is a green notice!");
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <!-- Replace 'notice-container' with the ID or class of the element where you want to display the notice -->
+    <div id="notice-container"></div>
+
+    <!-- Example link to trigger the notice -->
+    <%= link_to "Show Notice", "#", id: "show-notice-link" %>
+
+    <!-- Body content -->
+  </body>
+</html>
+
+<% flash.each do |key, value| %>
+  <div class="alert alert-<%= key %>"><%= value %></>
+<% end %>
+
+
+<!-- app/views/pokemon/index.html.erb -->
+<p style="color: green"><%= notice %></p>
+<turbo-frame id="pokemon-list">
+  <%= render partial: 'pokemon_turbo_names', locals: { pokemon_data: @pokemon_data } %>
+</turbo-frame>
+<h1>Pokemon List</h1>
+
+<%= link_to 'Poke Scaffold', pokes_path %><br>
+<%= link_to 'Poke/New', new_poke_path %><br>
+<br>
+
+
+<a href="#" data-hx-get="<%= url_for(action: 'fetch_pokemont') %>" data-hx-target="#pokemon-list">Load Pokemon</a>
+<a href="#" data-hx-get="<%= url_for(action: 'fetch_pokemon') %>" data-hx-target="#pokemon-list">Load Pokemon</a>
+<!-- Trigger the notices/show action with HTMX -->
+<a href="#" data-hx-get="<%= url_for(controller: 'notices', action: 'sho', type: 'success', format: :html) %>" data-hx-target="#notice-container">Show Success Notice</a><br>
+
+<!-- Container to display the flash notice -->
+<div id="notice-container"></div>
+
+
+<!-- Trigger the notices/show action with HTMX -->
+<a href="#" data-hx-get="<%= url_for(controller: 'notices', action: 'show', type: 'success', format: :json) %>" data-hx-target="#notice-container">Show Success Notice</a>
+
+
+<!-- Include CSRF token in HTMX request -->
+<a href="#" data-hx-get="<%= url_for(controller: 'notices', action: 'show', type: 'success') %>" data-hx-headers="{ 'X-CSRF-Token': '<%= form_authenticity_token %>' }" data-hx-target="#notice-container">Show Success Notice</a>
+
+
+<!-- Trigger the notices/show action with HTMX -->
+<a href="#" data-hx-get="<%= url_for(controller: 'notices', action: 'show', type: 'success') %>" data-hx-target="#notice-container">Show Success Notice</a>
+<br>
+<!-- app/views/pokemon/index.html.erb -->
+<%#= stimulus_controller "pokemon" %>
+
+
+<a href="#" data-hx-get="<%= url_for(action: 'fetch_pokemon') %>" data-hx-target="#pokemon-list">Load Pokemon</a>
+
+<button data-hx-post="<%= url_for(action: 'clear_pokemon') %>" data-hx-target="#pokemon-list">Clear Pokemon</button>
+
+
+
+<div id="pokemon-list">
+  <%#= render partial: 'pokemon_names' %>
+  <div class="startingtest">
+    starting text
+  </div>
+</div>

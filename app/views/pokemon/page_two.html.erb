@@ -1,0 +1,43 @@
+<!-- app/views/layouts/application.html.erb -->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Other head content -->
+
+    <!-- Include jQuery (you can use a different library if you prefer) -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+    <!-- Your custom JavaScript for creating a notice -->
+    <script>
+      let xx = "HIII"
+      var jvar = '<%= @myvar %>';
+      $(document).ready(function() {
+        // Function to show a notice
+        function noticeAction(message, color) {
+          // Replace this with the ID or class of the element where you want to display the notice
+          var noticeElement = $('#notice-container');
+          
+          // Set the message and style
+          noticeElement.html(message).css('color', color);
+        }
+
+        // Example: Show a notice when the link is clicked
+        $('#show-notice-link').on('click', function(event) {
+          event.preventDefault();
+          noticeAction(xx, 'green');
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <!-- Replace 'notice-container' with the ID or class of the element where you want to display the notice -->
+    <div id="notice-container"></div>
+
+    <!-- Example link to trigger the notice -->
+    <%= link_to "Show Notice", "#", id: "show-notice-link" %>
+
+    <!-- Body content -->
+  </body>
+</html>
+<%= @myvar %>
