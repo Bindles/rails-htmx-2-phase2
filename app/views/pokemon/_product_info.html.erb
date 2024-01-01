@@ -1,0 +1,27 @@
+<!-- app/views/pokemon/_product_info.html.erb -->
+<script>
+  let aa = 'hill';
+  let bb = handle.value;
+  myv = '<%= parsed_data['product']['title'] %>';
+  document.getElementById('input#handle') = 'hillo';
+</script>
+
+<h2>Product Information</h2>
+<% if parsed_data['product'].present? %>
+  <ul>
+    <li><strong>ID:</strong> <%= parsed_data['product']['id'] %></li>
+    <li><strong>Title:</strong> <%= parsed_data['product']['title'] %></li>
+    <li><strong>Type:</strong> <%= parsed_data['product']['product_type'] %></li>
+    <li><strong>Body HTML:</strong> <%= parsed_data['product']['body_html'] %></li>
+    <li><strong>Vendor:</strong> <%= parsed_data['product']['vendor'] %></li>
+  </ul>
+<% else %>
+  <p>No product data available.</p>
+<% end %>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    handle.value = "nice"
+    console.log(myv)
+    document.getElementBy('handle') = "hiz"
+  }

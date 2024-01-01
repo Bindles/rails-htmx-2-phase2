@@ -1,0 +1,23 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Pos</h1>
+
+<a href="#" data-hx-get="<%= url_for(action: 'fetch_pokemonx') %>" data-hx-target="#pokemon-l">Load Pokemon HTMX</a>
+
+<button data-hx-post="<%= url_for(action: 'clear_pokemonx') %>" data-hx-target="#pokemon-l">Clear Pokemon HTMX</button>
+
+
+<div id="pokemon-l">
+
+  
+</div>
+<div id="pos">
+  <% @pos.each do |po| %>
+    <%= render po %>
+    <p>
+      <%= link_to "Show this po", po %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New po", new_po_path %>

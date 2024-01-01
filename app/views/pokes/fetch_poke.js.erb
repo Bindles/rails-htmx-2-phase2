@@ -1,0 +1,9 @@
+// app/views/pokes/fetch_poke.js.erb
+var pp = @pokemon_data
+const pokeName = "<%= j @poke_name %>"; // j is used to escape JavaScript special characters
+
+// Update the form input field with the fetched Pokémon name
+const pokemonNameInput = document.getElementById('poke_name');
+if (pokemonNameInput) {
+  pokemonNameInput.value = pokeName;
+}

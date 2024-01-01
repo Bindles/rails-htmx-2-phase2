@@ -12,7 +12,14 @@
     <script>
       // Example: Show a notice when the link is clicked
       document.addEventListener('DOMContentLoaded', function() {
+
+
+
+        myz = 'cool'
+        myd = document.getElementByclass('handle').value = 'hijf'
+
         var showNoticeLink = document.getElementById('show-notice-link');
+        
 
         // HTMX trigger on link click
         showNoticeLink.addEventListener('click', function(event) {
@@ -146,8 +153,29 @@
 <%= link_to 'Poke/New', new_poke_path %><br>
 <br>
 
+<%= link_to 'getp', fetch_pokemont_path %>
 
-<a href="#" data-hx-get="<%= url_for(action: 'fetch_pokemont') %>" data-hx-target="#pokemon-list">Load Pokemon</a>
+<%= form_tag(fetch_pokemont_path, method: :post) do %>
+  <label for="handle">Search Handle:</label>
+  <%= text_field_tag(:handle, nil, required: true) %>
+  <%= submit_tag('Fetch Price') %>
+<% end %>
+
+<br>
+<%#  Turbo WORKING Vapes%>
+<%= link_to 'Load Pokemon TURBO tf-pokemon-list', fetch_pokemonz_path, 
+              data: { turbo_frame: 'pokemon-list' }, 
+              class: 'your-other-classes-here' %>
+<br><br>
+<%#  Turbo WORKING pokeoons%>
+<%= link_to 'Load Pokemon TURBO tf-pokemon-list', fetch_pokemontc_path, 
+              data: { turbo_frame: 'pokemon-list' }, 
+              class: 'your-other-classes-here' %>
+<br>
+
+
+<a href="#" data-hx-get="<%= url_for(action: 'fetch_pokemonz') %>" data-hx-target="#pokemon-list">Load Pokemon TURBO</a>
+<a href="#" data-hx-get="<%= url_for(action: 'fetch_pokemont') %>" data-hx-target="#pokemon-list">Load Pokemon TURBO</a>
 <a href="#" data-hx-get="<%= url_for(action: 'fetch_pokemon') %>" data-hx-target="#pokemon-list">Load Pokemon</a>
 <!-- Trigger the notices/show action with HTMX -->
 <a href="#" data-hx-get="<%= url_for(controller: 'notices', action: 'sho', type: 'success', format: :html) %>" data-hx-target="#notice-container">Show Success Notice</a><br>
@@ -171,9 +199,9 @@
 <%#= stimulus_controller "pokemon" %>
 
 
-<a href="#" data-hx-get="<%= url_for(action: 'fetch_pokemon') %>" data-hx-target="#pokemon-list">Load Pokemon</a>
+<a href="#" data-hx-get="<%= url_for(action: 'fetch_pokemon') %>" data-hx-target="#pokemon-list">Load Pokemon HTMX</a>
 
-<button data-hx-post="<%= url_for(action: 'clear_pokemon') %>" data-hx-target="#pokemon-list">Clear Pokemon</button>
+<button data-hx-post="<%= url_for(action: 'clear_pokemon') %>" data-hx-target="#pokemon-list">Clear Pokemon HTMX</button>
 
 
 

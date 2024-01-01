@@ -1,0 +1,2 @@
+class Po < ApplicationRecord
+end

@@ -6,6 +6,18 @@ class PokesController < ApplicationController
     @poke = Poke.all
   end
 
+  require 'httparty'
+
+  def fetch_poke
+    response = HTTParty.get('https://pokeapi.co/api/v2/pokemon?limit=3')
+    @pokemon_data = JSON.parse(response.body)
+    flash[:success] = 'Pokemon successfully loaded!'
+    respond_to do |format|
+      format.html { render partial: 'poke_names' }
+    end
+  end
+
+
   # GET /poke/1 or /poke/1.json
   def show
   end

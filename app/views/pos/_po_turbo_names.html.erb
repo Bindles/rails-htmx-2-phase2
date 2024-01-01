@@ -1,7 +1,21 @@
 <!-- app/views/pokemon/_pokemon_turbo_names.html.erb -->
 <script>
-  let xxx = pokemon_data
+
+  zz ='<%= raw pokemon_data['results'][0]['name'] %>'
+document.getElementById('po_name').value = '<%= pokemon_data['results'][0]['name'] %>'
+  
+
+  document.addEventListener('turbo:load', function () {
+    // Your JavaScript code here
+    po_name.value = 'hi'
+    const poNameInput = document.getElementById('po_name');
+    if (poNameInput) {
+      poNameInput.value = 'hi';
+    }
+  });
+
 </script>
+
 <% if pokemon_data.present? %>
   <%= pokemon_data['results'][0]['name'] %>
   <ul>

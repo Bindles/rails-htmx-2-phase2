@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @po %>
+
+<div>
+  <%= link_to "Edit this po", edit_po_path(@po) %> |
+  <%= link_to "Back to pos", pos_path %>
+
+  <%= button_to "Destroy this po", @po, method: :delete %>
+</div>

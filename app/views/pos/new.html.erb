@@ -1,0 +1,15 @@
+<h1>New po</h1>
+<input id="person_name" name="person[name]" type="text" value="Henry"/>
+<%= link_to 'Load Pokemon TURBO tf-pokemon-list', fetch_pot_pos_path, 
+              data: { turbo_frame: 'pokemon-list' }, 
+              class: 'your-other-classes-here' %>
+<br>
+<%= render "form", po: @po %>
+
+<br>
+<turbo-frame id="pokemon-list"></turbo-frame>
+  <%#= render partial: 'po_turbo_names', locals: { pokemon_data: @pokemon_data } %>
+<div class="pokemon-list"></div>
+<div>
+  <%= link_to "Back to pos", pos_path %>
+</div>

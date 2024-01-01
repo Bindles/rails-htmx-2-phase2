@@ -20,6 +20,7 @@
     <%= form.label :url, style: "display: block" %>
     <%= form.text_field :url %>
   </div>
+  </div>
 
   <div>
     <%= form.label :category, style: "display: block" %>
@@ -33,6 +34,22 @@
   <%= button_tag 'Fetch Poke', id: 'fb' %>
   <%= content_tag :p, '', id: 'pokemon_name' %>
 <% end %>
+
+
+<script>
+  const pokemonData = <%= raw @pokemon_data.to_json %>;
+  var hlh = @pokemon_data
+  var hhh = 'a'
+
+</script>
+<a href="#" data-hx-get="<%= url_for(action: 'fetch_poke') %>" data-hx-target="#poke-list" hx-trigger="click">Load Poke HTMX</a>
+
+<!-- Add a target for the form -->
+<div id="poke-list">
+
+</div>
+
+<button id="fbjs">Fetch Poke JS</button>
 
 <button id="fbjs">Fetch Poke JS</button>
 
