@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
+  resources :colors
   resources :pos do
-    collection do
       get 'fetch_pot', to: 'pos#fetch_pot'    
-    end
+
   end
   resources :pokes
   root 'pokemon#index'

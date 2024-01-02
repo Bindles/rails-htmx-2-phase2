@@ -1,0 +1,39 @@
+<!-- app/views/pokemon/_pokemon_turbo_names.html.erb -->
+<script>
+
+  zz ='<%= raw pokemon_data['results'][0]['name'] %>'
+document.getElementById('po_name').value = '<%= pokemon_data['results'][0]['name'] %>'
+  
+
+  document.addEventListener('turbo:load', function () {
+    // Your JavaScript code here
+    po_name.value = 'hi'
+    const poNameInput = document.getElementById('po_name');
+    if (poNameInput) {
+      poNameInput.value = 'hi';
+    }
+  });
+
+</script>
+
+<% if pokemon_data.present? %>
+  <%= pokemon_data['results'][0]['name'] %>
+  <ul>
+    <% pokemon_data['results'].each do |pokemon| %>
+      <li><%= pokemon['name'] %></li>
+      <li><%= pokemon['url'] %></li>
+    <% end %>
+  </ul>
+
+  <%= form_with(model: Po.new, id: 'pokemon_name_test') do |form| %>
+    <div class="field">
+      <%= form.label :name, 'Pokemon Name Test:' %>
+      <%= form.text_field :name, value: pokemon_data['results'][0]['name'], readonly: true %>
+    </div>
+    <!-- Add other form fields as needed -->
+    <%= form.submit 'Submit', class: 'btn btn-primary' %>
+  <% end %>
+
+<% else %>
+  <p>No Pokemon data available.</p>
+<% end %>
