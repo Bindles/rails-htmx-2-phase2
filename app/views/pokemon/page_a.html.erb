@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <script
+      src="https://unpkg.com/htmx.org@1.9.9"
+      integrity="sha384-QFjmbokDn2DjBjq+fM+8LUIVrAgqcNW2s0PjAxHETgRn9l4fvX31ZxDxvwQnyMOX"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+
+    <table border="2">
+      <tr background-color="red" id="replaceme">asas
+        <td><div hx-get="file:///C:/dev/project/_html/pagetwo.html" hx-target="#target-div" hx-allow="same-origin">
+  CLick me to load pagetwo.html
+</div>
+
+
+
+
+<div id="target-div"></div>
+
+
+<%= simple_htmx_link(page_b_path, 'replacemez') %>
+<div id="replacemez">
+  replace here
+</div>
+
+
+          <div id="replaceme">
+            replace here
+          </div>
+          <button class="button" 
+          hx-get="<%= page_b_path %>"
+          hx-target="#replaceme"
+          hx-swap="innerHTML"
+          hx-allow="same-origin"></button>
+
+          </button>
+        </td>
+      </tr>
+    </table>
+
+    <div hx-get="/api/users" hx-target="#users" hx-swap="outerHTML"></div>
+  </body>
+</html>
+
+
+
+
+
+
+
+
+          <div id="replacemez"></div>
+            replace here
+          </div>
+          <button class="button" 
+          hx-get="<%= page_b_path %>"
+          hx-target="#replacemez"
+          hx-swap="innerHTML"
+          hx-allow="same-origin"></button>

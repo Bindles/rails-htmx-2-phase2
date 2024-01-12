@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   end
   resources :pokes
   root 'pokemon#index'
+  get 'alpine' => 'colors#alpine'
   get 'fetch_pokemon', to: 'pokemon#fetch_pokemon'
   get 'fetch_pokemont', to: 'pokemon#fetch_pokemont'
   get 'fetch_pokemontc', to: 'pokemon#fetch_pokemontc'
@@ -17,6 +18,8 @@ Rails.application.routes.draw do
   match 'clear_pokemon', to: 'pokemon#clear_pokemon', via: [:get, :post]
   match 'clear_pokemonx', to: 'pos#clear_pokemonx', via: [:get, :post]
   get 'page_two' => 'pokemon#page_two'
+  get 'page_a' => 'pokemon#page_a'
+  get 'page_b' => 'pokemon#page_b'
   get 'notices/show', to: 'notices#show', as: 'show_notice'
   get 'notices/sho', to: 'notices#sho', as: 'sho_notice'
 

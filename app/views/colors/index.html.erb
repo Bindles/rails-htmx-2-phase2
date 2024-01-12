@@ -1,16 +1,76 @@
-<!-- app/views/colors/index.html.erb -->
-<h1>Color Circles</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+</head>
+<body>
+  
+  <%# <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16" /></svg> %>
 
-<div id="color-circles">
+
+
+
+<br>
+  <br>
+  <div x-data="{
+    newPerson: '',
+    people:['dick','rick','ron'],
+    add() {this.people.push(this.newPerson)}
+    }">
+
+  <!-- input to add a person -->
+  <form @submit.prevent="add">
+    <input x-model="newPerson"/>
+    <button>Add Person</button>
+  </form>
+
+
+    <template x-for="person in people">
+      <li x-text="person"></li>
+    </template>
+  
+  <div x-data="{ isShow: false}">
+    <button @click="isShow = !isShow" x-text="isShow ? 'A' : 'B'">Toggle</button>
+    <button x-on:click="isShow = !isShow" x-text="isShow ? 'Hide' : 'Show'">Toggle</button>
+    <div x-show="isShow">Hello, world!</div>
+  </div>
+
+
+</body>
+</html>
+
+<div id="a">
+  <!-- This div will be updated with the selected color's name -->
+</div>
+
+
+
+
+<div id="color-circlez">
   <% @colors.each do |color| %>
-    <div class="color-circle" hx-get="/colors/<%= color.id %>" hx-swap="outerHTML">
+    <%= simple_htmx_link("/colors/#{color.id}", 'a', 'hx-swap': '#mydiv') %>
       <!-- Display your color circles here -->
       <%= color.name %>
     </div>
   <% end %>
 </div>
 
-<div id="selected-color-name">
+<!-- app/views/colors/index.html.erb -->
+<h1>Color Circles</h1>
+
+<div id="color-circles">
+  <% @colors.each do |color| %>
+    <div class="color-circle" hx-get="/colors/<%= color.id %>"  hx-swap="#mydiv" hx-target="#aaa" hx-headers='{"HX": "true"}'>
+      <!-- Display your color circles here -->
+      <%= color.name %>
+    </div>
+  <% end %>
+</div>
+
+<div id="aaa">
   <!-- This div will be updated with the selected color's name -->
 </div>
 
@@ -33,3 +93,12 @@
 
 
 
+<script>
+  document.addEventListener('htmx:load', function(event) {
+    // Extract the content of the .mydiv element from the fetched response
+    var mydivContent = event.target.querySelector('.mydiv');
+
+    // Update the content of the #aaa element on the index page
+    document.getElementById('#aaa').innerHTML = mydivContent.innerHTML;
+  });
+</script>

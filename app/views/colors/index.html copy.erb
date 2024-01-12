@@ -1,0 +1,44 @@
+<!-- app/views/colors/index.html.erb -->
+<h1>Color Circles</h1>
+
+<div id="color-circles">
+  <% @colors.each do |color| %>
+    <div class="color-circle" hx-get="/colors/<%= color.id %>"  hx-swap="#mydiv" hx-target="#aaa" hx-headers='{"HX": "true"}'>
+      <!-- Display your color circles here -->
+      <%= color.name %>
+    </div>
+  <% end %>
+</div>
+
+<div id="aaa">
+  <!-- This div will be updated with the selected color's name -->
+</div>
+
+<br>---<br>
+
+<p style="color: green"><%= notice %></p>
+
+<h1>Colors</h1>
+
+<div id="colors">
+  <% @colors.each do |color| %>
+    <%= render color %>
+    <p>
+      <%= link_to "Show this color", color %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New color", new_color_path %>
+
+
+
+<script>
+  document.addEventListener('htmx:load', function(event) {
+    // Extract the content of the .mydiv element from the fetched response
+    var mydivContent = event.target.querySelector('.mydiv');
+
+    // Update the content of the #aaa element on the index page
+    document.getElementById('#aaa').innerHTML = mydivContent.innerHTML;
+  });
+</script>

@@ -12,6 +12,7 @@ class PosController < ApplicationController
     #   render partial: 'pokemon_turbo_names', locals: { pokemon_data: @pokemon_data }
     # end
   end
+  
 
   # GET /pos or /pos.json
   def index

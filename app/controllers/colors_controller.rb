@@ -1,6 +1,10 @@
 class ColorsController < ApplicationController
   before_action :set_color, only: %i[ show edit update destroy ]
 
+def alpine
+  
+end
+
   # GET /colors or /colors.json
 def index
   @colors = Color.all
@@ -11,8 +15,18 @@ def index
   end
 end
 
+
   # GET /colors/1 or /colors/1.json
   def show
+    if request.headers['HX'] == 'true'
+      puts "HX"
+      # htmx request, render only the content of 'mydiv'
+      render html: render_to_string(:show)[/\<div class=\"mydiv\"\>(.*?)\<\/div\>/m, 1], layout: false
+    else
+      puts "REG"
+      # Regular HTML request, render the full show page
+      render 'show'
+    end
   end
 
   # GET /colors/new

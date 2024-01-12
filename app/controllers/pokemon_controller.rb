@@ -10,6 +10,13 @@ skip_before_action :verify_authenticity_token, only: [:clear_pokemon]
   def page_two
     @myvar="cool"
   end
+  def page_a
+
+  end
+  def page_b
+
+  end
+
   def fetch_pokemon
     response = HTTParty.get('https://pokeapi.co/api/v2/pokemon?limit=3')
     @pokemon_data = JSON.parse(response.body)

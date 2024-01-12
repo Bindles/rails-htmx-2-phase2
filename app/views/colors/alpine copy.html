@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
+    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/pikaday/pikaday.js"></script>
+    <style>
+      .red {
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <div x-data="{count: 0}">
+      <button @click="alert('sasa')">Alert</button>
+      <button @click="console.log('sasa')">Log</button>
+      <br />
+      <button @click="count++">+</button>
+      <button @click="count--">-</button>
+      <span x-text="count"></span>
+
+      <br /><br />
+
+      <div x-data="{tweet: 'say sumpn'}">
+        <textarea
+          name="dick"
+          id=""
+          cols="30"
+          rows="10"
+          x-model="tweet"
+        ></textarea>
+        <div
+          x-text="tweet.length"
+          x-bind:class="tweet.length > 14 ? 'red' : '' "
+        ></div>
+      </div>
+
+      <br /><br />
+      <!-- x-ref -->
+      <!-- 
+    <div x-data="{}" x-init="new Pikaday({ field: $refs.inputz})">
+      <input type="text" x-ref="inputz" >
+    </div>
+      <input type="text" x-ref="inputz" x-data="{}" x-init="new Pikaday({ field: $refs.inputz})">
+    -->
+
+      <input type="text" x-data="{}" x-init="new Pikaday({ field: $el})" />
+
+      <script>
+        // new Pikaday({ field: document.querySelector('input')})
+        //<div x-data="{}" x-init="new Pikaday({ field: document.querySelector('input')})">
+        //<div x-data="{}" x-init="new Pikaday({ field: $refs.inputz})">
+        //<input type="text" x-ref="inputz">
+      </script>
+
+      <div x-data="dropdown()">
+        <button x-on:click="open=true">Show Dropdown</button>
+        <div
+          x-show="open"
+          x-transition.duration.2400ms
+          x-on:click.away="open=false"
+          @keydown.escape.window="open=false"
+        >
+          Dropdown Contents
+        </div>
+      </div>
+    </div>
+    <script>
+      function dropdown() {
+        return {
+          open: false,
+          show() {
+            this.open = true;
+          },
+        };
+      }
+    </script>
+  </body>
+</html>
