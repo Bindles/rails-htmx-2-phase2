@@ -10,6 +10,11 @@
       src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
     ></script>
     <script src="https://cdn.jsdelivr.net/npm/pikaday/pikaday.js"></script>
+
+
+    <!-- Include Flatpickr -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr@4.6.6/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr@4.6.6/dist/flatpickr.min.js" defer></script>
     <style>
       .red {
         color: red;
@@ -17,6 +22,50 @@
     </style>
   </head>
   <body>
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Date and Time Picker</title>
+    <!-- Include Alpine.js -->
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@2.8.2/dist/alpine.js" defer></script>
+    <!-- Include Flatpickr -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr@4.6.6/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr@4.6.6/dist/flatpickr.min.js" defer></script>
+</head>
+<body>
+    <div x-data="{ date: '' }">
+        <label for="custom-date">Pick a Date and Time:</label>
+        <input
+            x-model="date"
+            id="custom-date"
+            type="text"
+            placeholder="Select Date and Time"
+            data-input
+            data-toggle
+        />
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                flatpickr('[data-toggle]', {
+                    enableTime: true,
+                    dateFormat: 'Y-m-d H:i',
+                    time_24hr: true,
+                });
+            });
+        </script>
+
+        <p x-text="'Selected Date and Time: ' + date"></p>
+    </div>
+</body>
+</html>
 
 
 <br>

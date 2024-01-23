@@ -2,7 +2,7 @@
 <script>
 
   zz ='<%= raw pokemon_data['results'][0]['name'] %>'
-document.getElementById('po_name').value = '<%= pokemon_data['results'][0]['name'] %>'
+document.getElementById('po_name').value = '<%= pokemon_data['results'][0]['name'] + "lkl" %>'
   
 
   document.addEventListener('turbo:load', function () {
@@ -15,7 +15,7 @@ document.getElementById('po_name').value = '<%= pokemon_data['results'][0]['name
   });
 
 </script>
-
+zzz
 <% if pokemon_data.present? %>
   <%= pokemon_data['results'][0]['name'] %>
   <ul>

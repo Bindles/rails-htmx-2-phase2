@@ -1,11 +1,20 @@
 Rails.application.routes.draw do
   resources :colors
   resources :pos do
+    collection do
       get 'fetch_pot', to: 'pos#fetch_pot'    
-
+    end
   end
   resources :pokes
-  root 'pokemon#index'
+  
+  resources :items
+
+
+  root 'items#index'
+
+  #root 'pokemon#index'
+  get 'index2' => 'items#index2'
+
   get 'alpine' => 'colors#alpine'
   get 'fetch_pokemon', to: 'pokemon#fetch_pokemon'
   get 'fetch_pokemont', to: 'pokemon#fetch_pokemont'

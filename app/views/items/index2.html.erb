@@ -1,0 +1,25 @@
+<!-- views/items/index.html.erb -->
+<div id="all">
+<h1>Items</h1>
+<p>cool</p>
+
+
+<a href="#" data-hx-get="<%= items_path(sort: 'name') %>" hx-target="#aaa" >Sort by Name</a>
+
+<a href="#" data-hx-get="<%= items_path(sort: 'name') %>" hx-target="#all" >Sort by Name</a>
+
+<a href="#" data-hx-get="<%= items_path(sort: 'name') %>" >Sort by Name</a>
+
+<div id="replaceme">
+<turbo-frame id="items_list">
+  <div id="items_list">
+    <%= render 'items/list', items: @items %>
+  </div>
+</turbo-frame>
+</div>
+
+
+<div id="aaa"></div>
+
+
+</div>

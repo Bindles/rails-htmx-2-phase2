@@ -163,20 +163,20 @@
 
 <br>
 <%#  Turbo WORKING Vapes%>
-<%= link_to 'Load Vapes [TURBO] tf-pokemon-list', fetch_pokemonz_path, 
-              data: { turbo_frame: 'pokemon-list' }, 
-              class: 'your-other-classes-here' %>
-<br>
-<%#  Turbo WORKING pokeoons%>
-<%= link_to 'Load Pokemon [TURBO] tf-pokemon-list', fetch_pokemontc_path, 
+<%= link_to 'Load Pokemon TURBO tf-pokemon-list', fetch_pokemonz_path, 
               data: { turbo_frame: 'pokemon-list' }, 
               class: 'your-other-classes-here' %>
 <br><br>
+<%#  Turbo WORKING pokeoons%>
+<%= link_to 'Load Pokemon TURBO tf-pokemon-list', fetch_pokemontc_path, 
+              data: { turbo_frame: 'pokemon-list' }, 
+              class: 'your-other-classes-here' %>
+<br>
 
 
-<a href="#" data-hx-get="<%= url_for(action: 'fetch_pokemonz') %>" data-hx-target="#pokemon-list">Load Vapes [htmx]</a>
-<a href="#" data-hx-get="<%= url_for(action: 'fetch_pokemont') %>" data-hx-target="#pokemon-list">Load Pokemon [htmx]</a>
-<a href="#" data-hx-get="<%= url_for(action: 'fetch_pokemon') %>" data-hx-target="#pokemon-list">Load Pokemon Names [htmx]</a>
+<a href="#" data-hx-get="<%= url_for(action: 'fetch_pokemonz') %>" data-hx-target="#pokemon-list">Load Pokemon TURBO</a>
+<a href="#" data-hx-get="<%= url_for(action: 'fetch_pokemont') %>" data-hx-target="#pokemon-list">Load Pokemon TURBO</a>
+<a href="#" data-hx-get="<%= url_for(action: 'fetch_pokemon') %>" data-hx-target="#pokemon-list">Load Pokemon</a>
 <!-- Trigger the notices/show action with HTMX -->
 <a href="#" data-hx-get="<%= url_for(controller: 'notices', action: 'sho', type: 'success', format: :html) %>" data-hx-target="#notice-container">Show Success Notice</a><br>
 

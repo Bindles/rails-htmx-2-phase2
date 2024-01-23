@@ -6,6 +6,20 @@ class PosController < ApplicationController
     response = HTTParty.get('https://pokeapi.co/api/v2/pokemon?limit=6')
     @pokemon_data = JSON.parse(response.body)
     flash[:success] = 'Pokemon successfully loadedzz!'
+    # Access the @po instance created in the 'new' action
+    # @po = instance_variable_get(:@po)
+    # puts @po
+    # Retrieve the @po instance from the session
+    @po = ObjectSpace._id2ref(session[:po_id])
+    puts 'asasas'
+    puts @po.inspect
+
+    # Modify the @po instance
+    @po.url = "HI"
+
+    # Modify the @po instance
+    #@po.url = "HI"
+
     
     render turbo_stream: turbo_stream.append('pokemon-list', partial: 'po_turbo_names', locals: { pokemon_data: @pokemon_data})
     # turbo_stream.append 'pokemon-list' do
@@ -26,9 +40,11 @@ class PosController < ApplicationController
   # GET /pos/new
   def new
     @po = Po.new
-    @po.url = "j"
-    @myvar = "AJSKAJSKAJSLKAJS"
-    session[:po_attributes] = @po.attributes
+    session[:po_id] = @po.object_id
+    # session[:new_po_id] = @po.id
+    # #@po.url = "j"
+    # @myvar = "AJSKAJSKAJSLKAJS"
+    # session[:po_attributes] = @po.attributes
   end
 
   def fetch_pokemonx
