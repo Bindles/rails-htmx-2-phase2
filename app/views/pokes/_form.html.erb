@@ -1,4 +1,4 @@
-<%= form_with(model: poke) do |form| %>
+<%= form_with(model: poke, id: dom_id(poke)) do |form| %>
   <% if poke.errors.any? %>
     <div style="color: red">
       <h2><%= pluralize(poke.errors.count, "error") %> prohibited this poke from being saved:</h2>
@@ -42,16 +42,39 @@
   var hhh = 'a'
 
 </script>
+
+    <%= link_to 'Load Pokemon [TURBO] tf-pokemon-list', fetch_poke_path, 
+    data: { turbo_frame: 'pokemon-list' }, 
+    class: 'your-other-classes-here' %>
+
 <a href="#" data-hx-get="<%= url_for(action: 'fetch_poke') %>" data-hx-target="#poke-list" hx-trigger="click">Load Poke HTMX</a>
+
+
+<div id="tst">
+
+</div>
+
+  <%= turbo_frame_tag :pass_field do %>
+    <% if @pokemon_data %>
+    <%# if item.passcode_protected?%>
+      <%#= turbo_stream.update "tst", item.pass = @item.name + ' updated at ' + Time.zone.now.to_s + params.inspect%>
+      <%= turbo_stream.update "tst", @pokemon_data.inspect %>
+    <% end %>
+  <% end %>
+
+
+<turbo-frame id="pokemon-list">
+  <%#= render partial: 'poke_names', locals: { pokemon_data: @pokemon_data } %>
+</turbo-frame>
 
 <!-- Add a target for the form -->
 <div id="poke-list">
 
 </div>
 
-<button id="fbjs">Fetch Poke JS</button>
+<%#button id="fbjs">Fetch Poke JS</#button>
 
-<button id="fbjs">Fetch Poke JS</button>
+<button% id="fbjs">Fetch Poke JS</button%>
 
 <script>
   document.addEventListener('DOMContentLoaded', function() {
@@ -64,6 +87,9 @@
 
           pokeNameInput.textContent = `Fetched Pokémon Name: ${pokeName}`;
           pokeNameInput.value = pokeName
+          //Works BOTH
+          //document.getElementById('poke_name').value = pokeName
+          //poke_name.value = pokeName
         }
       })
       .catch(error => {

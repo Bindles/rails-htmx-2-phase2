@@ -3,7 +3,7 @@ class PokesController < ApplicationController
 
   # GET /poke or /poke.json
   def index
-    @poke = Poke.all
+    @pokes = Poke.all
   end
 
   require 'httparty'
@@ -12,9 +12,10 @@ class PokesController < ApplicationController
     response = HTTParty.get('https://pokeapi.co/api/v2/pokemon?limit=3')
     @pokemon_data = JSON.parse(response.body)
     flash[:success] = 'Pokemon successfully loaded!'
-    respond_to do |format|
-      format.html { render partial: 'poke_names' }
-    end
+    # respond_to do |format|
+    #   format.html { render partial: 'poke_names' }
+    # end
+    render turbo_stream: turbo_stream.append('pokemon-list', partial: 'poke_names', locals: { pokemon_data: @pokemon_data})
   end
 
 

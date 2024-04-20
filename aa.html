@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Information Fetcher</title>
+</head>
+<body>
+  <h1>Product Information Fetcher</h1>
+  <button id="fetchButton">Fetch Product Information</button>
+  <h2>Product Information</h2>
+  <ul id="productInfo">
+    <!-- Product information will be displayed here -->
+  </ul>
+  <!-- Replace 'po_name' with the actual ID of your input field -->
+  <input type="text" id="po_name" placeholder="Product Name">
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const fetchButton = document.getElementById('fetchButton');
+      const productInfoList = document.getElementById('productInfo');
+      
+      fetchButton.addEventListener('click', function () {
+        // Fetch data from the API endpoint
+        fetch('https://www.eightvape.com/products/uwell-caliburn-g-pod-system-kit.json')
+          .then(response => response.json())
+          .then(data => {
+            // Check if product data is available
+            if (data['product']) {
+              // Clear previous product info
+              productInfoList.innerHTML = '';
+              
+              // Render product information
+              const product = data['product'];
+              const productInfoHTML = `
+                <li><strong>ID:</strong> ${product['id']}</li>
+                <li><strong>Title:</strong> ${product['title']}</li>
+                <li><strong>Type:</strong> ${product['product_type']}</li>
+                <li><strong>Body HTML:</strong> ${product['body_html']}</li>
+                <li><strong>Vendor:</strong> ${product['vendor']}</li>
+              `;
+              productInfoList.innerHTML = productInfoHTML;
+              
+              // Update value of po_name input field with product title
+              document.getElementById('po_name').value = product['title'];
+            } else {
+              productInfoList.innerHTML = '<p>No product data available.</p>';
+            }
+          })
+          .catch(error => {
+            console.error('Error fetching data:', error);
+          });
+      });
+    });
+  </script>
+</body>
+</html>

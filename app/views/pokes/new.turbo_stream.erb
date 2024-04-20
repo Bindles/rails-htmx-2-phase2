@@ -1,0 +1,5 @@
+<%# app/views/pokes/new.turbo_stream.erb %>
+<%= turbo_stream.replace dom_id(@poke) do %>
+  aaaa
+  <%= render "form", poke: @poke %>
+<% end %>

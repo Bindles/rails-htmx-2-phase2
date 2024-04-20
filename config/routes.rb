@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   resources :items
 
 
-  root 'items#index'
+  root 'pokemon#index'
 
   #root 'pokemon#index'
   get 'index2' => 'items#index2'
