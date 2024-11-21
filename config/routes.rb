@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :qcolors
+  resources :wheelcolors
   resources :colors
   resources :pos do
     collection do
@@ -9,8 +11,11 @@ Rails.application.routes.draw do
   
   resources :items
 
+  #default root =>
+  #root 'pokemon#index'
 
-  root 'pokemon#index'
+  #temp root for testing =>
+  root 'qcolors#index'
 
   #root 'pokemon#index'
   get 'index2' => 'items#index2'

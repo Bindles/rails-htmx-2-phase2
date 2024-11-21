@@ -1,0 +1,23 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Qcolors</h1>
+
+<%= render 'form', qcolor: Qcolor.new %>
+
+<%= turbo_frame_tag :colors do %>
+<div id="qcolors">
+  a
+  <% @qcolors.each do |qcolor| %>
+    <%= render qcolor %>
+  <% end %>
+</div>
+<% end %>
+
+
+<div id="context-menu" data-controller="context-menu" style="display:none; position:absolute; z-index:1000; background:white; border:1px solid #ccc;">
+  <ul>
+    <li id="edit" data-action="click->context-menu#edit" data-id="">Edit</li>
+    <li id="delete" data-action="click->context-menu#delete" data-id="">Delete</li>
+    <li id="move" data-action="click->context-menu#move" data-id="">Move</li>
+  </ul>
+</div>

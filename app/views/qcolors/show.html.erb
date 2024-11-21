@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @qcolor %>
+
+<div>
+  <%= link_to "Edit this qcolor", edit_qcolor_path(@qcolor) %> |
+  <%= link_to "Back to qcolors", qcolors_path %>
+
+  <%= button_to "Destroy this qcolor", @qcolor, method: :delete %>
+</div>

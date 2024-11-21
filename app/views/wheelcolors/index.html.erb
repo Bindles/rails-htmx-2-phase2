@@ -1,0 +1,24 @@
+<p style="color: green"><%= notice %></p>
+
+<%= turbo_frame_tag :new_wheelcolor_form do %>
+  <%= render 'form', wheelcolor: Wheelcolor.new %>
+<% end %>
+
+<%= turbo_frame_tag :wheelcolors_list do %>
+  <%= render @wheelcolors %>
+<% end %>
+
+<h1>WheelcolorsXXX</h1>
+
+<div id="wheelcolors">
+  <% @wheelcolors.each do |wheelcolor| %>
+    <%= render wheelcolor %>
+    <p>
+      <%= link_to "Show this wheelcolor", wheelcolor %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New wheelcolor", new_wheelcolor_path %>
+
+

@@ -1,0 +1,15 @@
+<%= turbo_frame_tag dom_id(@qcolor, :edit) do %>
+  <%= form_with(model: @qcolor, url: qcolor_path(@qcolor), method: :patch, data: { turbo_frame: dom_id(@qcolor, :edit) }) do |form| %>
+    <div>
+      <%= form.label :name %>
+      <%= form.text_field :name %>
+    </div>
+    <div>
+      <%= form.label :value %>
+      <%= form.text_field :value %>
+    </div>
+    <div>
+      <%= form.submit "Save" %>
+    </div>
+  <% end %>
+<% end %>

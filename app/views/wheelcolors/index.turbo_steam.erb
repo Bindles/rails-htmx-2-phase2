@@ -1,0 +1,2 @@
+<%= turbo_stream.append :wheelcolors_list, partial: 'wheelcolors/wheelcolor', locals: { wheelcolor: @wheelcolor } %>
+<%= turbo_stream.replace :new_wheelcolor_form, partial: 'wheelcolors/form', locals: { wheelcolor: Wheelcolor.new } %>
