@@ -7,7 +7,6 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= stylesheet_link_tag "https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"  %>
     <%= javascript_importmap_tags %>
     <!-- In your layout file -->
     <%= javascript_include_tag 'https://unpkg.com/htmx.org/dist/htmx.min.js' %>
