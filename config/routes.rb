@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
-  resources :qcolors
+  resources :qcolors do
+    post :move, on: :member
+  end
+  
   resources :wheelcolors
   resources :colors
   resources :pos do

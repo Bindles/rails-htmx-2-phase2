@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_11_21_090621) do
+ActiveRecord::Schema[7.1].define(version: 2024_11_24_064750) do
   create_table "colors", force: :cascade do |t|
     t.string "name"
     t.string "value"
@@ -45,6 +45,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_11_21_090621) do
     t.string "value"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "category"
   end
 
   create_table "socolors", force: :cascade do |t|

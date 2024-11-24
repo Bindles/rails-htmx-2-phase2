@@ -67,9 +67,22 @@ export default class extends Controller {
       fetch(`/qcolors/${id}`, {
         method: "DELETE",
         headers: { "X-CSRF-Token": document.querySelector("meta[name='csrf-token']").content }
+      })
+      .then(response => {
+        // If the response is successful, remove the element from the DOM
+        if (response.ok) {
+          const colorElement = document.querySelector(`#qcolor_${id}`);
+          if (colorElement) {
+            colorElement.remove(); // Remove the deleted color element from the DOM
+          }
+        }
+      })
+      .catch(error => {
+        console.error("Error deleting color:", error);
       });
     }
   }
+  
 
   move(event) {
     const id = event.target.dataset.id; // Get the ID of the color to move

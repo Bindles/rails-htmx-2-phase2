@@ -1,3 +1,4 @@
+<%= @qcolors.pluck(:category).uniq %>
 <%= form_with(model: qcolor) do |form| %>
   <% if qcolor.errors.any? %>
     <div style="color: red">
@@ -20,8 +21,50 @@
     <%= form.label :value, style: "display: block" %>
     <%= form.text_field :value %>
   </div>
+      
 
-  <div>
-    <%= form.submit %>
+  <div class="mb-4">
+    <%= form.label :category, "Select or Enter a Category", class: "block text-sm font-medium text-gray-700" %>
+    <div class="mt-1 flex items-center space-x-2">
+      <%= form.select :category, options_for_select(@qcolors.pluck(:category).uniq), 
+                      { include_blank: true }, 
+                      class: "form-select block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm", 
+                      id: "category-dropdown" %>
+      <span class="text-gray-500">or</span>
+      <%= form.text_field :category, 
+                          placeholder: "Enter custom category", 
+                          class: "form-input mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm", 
+                          id: "custom-category" %>
+    </div>
+  </div>
+
+  <div class="flex justify-end">
+    <%= form.submit "Save Qcolor", class: "bg-indigo-600 text-white px-4 py-2 rounded-md shadow-sm hover:bg-indigo-700" %>
   </div>
 <% end %>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const dropdown = document.getElementById("category-dropdown");
+    const customInput = document.getElementById("custom-category");
+
+    // Disable one input when the other is used
+    dropdown.addEventListener("change", function () {
+      if (dropdown.value) {
+        customInput.disabled = true;
+        customInput.value = ""; // Clear custom input if dropdown is used
+      } else {
+        customInput.disabled = false;
+      }
+    });
+
+    customInput.addEventListener("input", function () {
+      if (customInput.value) {
+        dropdown.disabled = true;
+        dropdown.value = ""; // Clear dropdown if custom input is used
+      } else {
+        dropdown.disabled = false;
+      }
+    });
+  });
+</script>
